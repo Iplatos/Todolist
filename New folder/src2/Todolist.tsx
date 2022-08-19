@@ -2,8 +2,8 @@ import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import {AddItemForm} from './AddItemForm';
 import {EditableSpan} from './EditableSpan';
-import {Button, Checkbox, IconButton} from '@material-ui/core';
-import {Delete} from '@material-ui/icons';
+import {Button, IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 export type TaskType = {
     id: string
@@ -43,12 +43,13 @@ export function Todolist(props: PropsType) {
 
     return <div>
         <h3> <EditableSpan value={props.title} onChange={changeTodolistTitle} />
-            <IconButton onClick={removeTodolist}>
-                <Delete />
+           {/*<button >x</button>*/}
+            <IconButton aria-label="delete">
+                <Delete onClick={removeTodolist} />
             </IconButton>
         </h3>
         <AddItemForm addItem={addTask}/>
-        <div>
+        <ul>
             {
                 props.tasks.map(t => {
                     const onClickHandler = () => props.removeTask(t.id, props.id)
@@ -61,35 +62,37 @@ export function Todolist(props: PropsType) {
                     }
 
 
-                    return <div key={t.id} className={t.isDone ? "is-done" : ""}>
-                        <Checkbox
-                            checked={t.isDone}
-                            color="primary"
-                            onChange={onChangeHandler}
-                        />
-
+                    return <li key={t.id} className={t.isDone ? "is-done" : ""}>
+                        <input type="checkbox" onChange={onChangeHandler} checked={t.isDone}/>
                         <EditableSpan value={t.title} onChange={onTitleChangeHandler} />
-                        <IconButton onClick={onClickHandler}>
-                            <Delete />
+                       {/* <button onClick={onClickHandler}>x</button>*/}
+                        <IconButton size={"small"} aria-label="delete">
+                            <Delete onClick={onClickHandler} />
                         </IconButton>
-                    </div>
+                    </li>
                 })
             }
-        </div>
+        </ul>
         <div>
-            <Button variant={props.filter === 'all' ? 'outlined' : 'text'}
-                    onClick={onAllClickHandler}
-                    color={'default'}
-            >All
-            </Button>
-            <Button variant={props.filter === 'active' ? 'outlined' : 'text'}
-                    onClick={onActiveClickHandler}
-                    color={'primary'}>Active
-            </Button>
-            <Button variant={props.filter === 'completed' ? 'outlined' : 'text'}
-                    onClick={onCompletedClickHandler}
-                    color={'secondary'}>Completed
-            </Button>
+
+        <Button /*className={props.filter === 'all' ? "active-filter" : ""}*/
+                onClick={onAllClickHandler} size={"small"} variant={props.filter === 'all' ? "text" : "contained"}  color="primary"> All </Button>
+           {/* <button className={props.filter === 'all' ? "active-filter" : ""}
+                    onClick={onAllClickHandler}>
+            </button>*/}
+            <Button /*className={props.filter === 'all' ? "active-filter" : ""}*/
+                    onClick={onActiveClickHandler} size={"small"} variant={props.filter === 'active' ? "text" : "contained"} color='primary'> Active </Button>
+
+           {/* <button className={props.filter === 'active' ? "active-filter" : ""}
+                    onClick={onActiveClickHandler}>Active
+            </button>*/}
+
+            <Button /*className={props.filter === 'all' ? "active-filter" : ""}*/
+                onClick={onCompletedClickHandler} size={"small"} variant={props.filter === 'completed' ? "text" : "contained"}  color='primary' > Completed </Button>
+
+            {/*<button className={props.filter === 'completed' ? "active-filter" : ""}
+                    onClick={onCompletedClickHandler}>Completed
+            </button>*/}
         </div>
     </div>
 }
