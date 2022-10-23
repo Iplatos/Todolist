@@ -1,13 +1,7 @@
 import axios from 'axios'
+import {FilterValuesType} from "../state/todolists-reducer";
 
-const settings = {
-    baseURL: "https://social-network.samuraijs.com/api/1.1",
-    withCredentials: true,
-    headers: {
-        // Не забываем заменить API-KEY на собственный
-        'API-KEY': "8cf4078c-1ea5-4807-a2b5-794fda862abd",
-    },
-}
+
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.1",
     withCredentials: true,
@@ -64,6 +58,7 @@ export  type TodolistType = {
     id: string
     order: number
     title: string
+    filter:FilterValuesType
 }
 type ResponseType = {
     fieldsErrors: string[]
