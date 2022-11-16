@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react'
 import './App.css';
-import {  Todolist } from './Todolist';
-import { AddItemForm } from './AddItemForm';
+import {Todolist} from './Todolist';
+import {AddItemForm} from './AddItemForm';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -10,26 +10,26 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import { Menu } from '@mui/icons-material';
+import {Menu} from '@mui/icons-material';
 import {
-    addTodolistAC, addTodolistTC,
+    addTodolistTC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC, changeTodolistTitleTC, deleteTodolist, FilterValuesType,
-    removeTodolistAC, SetTodolistTC, TodolistDomainType
+    changeTodolistTitleTC,
+    deleteTodolist,
+    FilterValuesType,
+    SetTodolistTC,
+    TodolistDomainType
 } from './state/todolists-reducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from './state/store';
+import {TaskStatuses, TaskType} from "./api/todolists-api";
 import {
-    addTaskAC,
     addTaskTC,
-    changeTaskStatusAC, changeTaskTC,
-    changeTaskTitleAC,
-    deleteTaskTC,
-    removeTaskAC
+
+   changeTaskTC,
+
+    deleteTaskTC
 } from './state/tasks-reducer';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppRootStateType } from './state/store';
-import {TaskStatuses, TaskType, TodolistType} from "./api/todolists-api";
-
-
 
 
 export type TasksStateType = {
@@ -60,6 +60,7 @@ function App() {
 
     const changeStatus = useCallback(function (id: string, status: TaskStatuses, todolistId: string) {
         const action = changeTaskTC(id, {status}, todolistId);
+        debugger
         dispatch(action);
     }, []);
 
