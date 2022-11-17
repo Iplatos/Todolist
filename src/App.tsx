@@ -60,7 +60,7 @@ function App() {
 
     const changeStatus = useCallback(function (id: string, status: TaskStatuses, todolistId: string) {
         const action = changeTaskTC(id, {status}, todolistId);
-        debugger
+
         dispatch(action);
     }, []);
 
