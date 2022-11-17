@@ -3,14 +3,12 @@ import {AddItemForm} from './AddItemForm'
 import {EditableSpan} from './EditableSpan'
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
-import {Delete} from '@mui/icons-material';
+import { Delete } from '@mui/icons-material';
 import {Task} from './Task'
-import {TaskStatuses, TaskType} from "./api/todolists-api";
-import {FilterValuesType} from "./state/todolists-reducer";
-
-import {useDispatch} from "react-redux";
-import {setTasksTC} from "./state/tasks-reducer";
-
+import {TaskStatuses, TaskType} from './api/todolists-api'
+import {FilterValuesType} from './state/todolists-reducer'
+import {getTasksTC} from "./state/tasks-reducer";
+import {useAppDispatch} from "./state/store";
 
 type PropsType = {
     id: string
@@ -18,21 +16,23 @@ type PropsType = {
     tasks: Array<TaskType>
     changeFilter: (value: FilterValuesType, todolistId: string) => void
     addTask: (title: string, todolistId: string) => void
-    changeTaskStatus: (id: string, status:TaskStatuses, todolistId: string) => void
+    changeTaskStatus: (id: string, status: TaskStatuses, todolistId: string) => void
     changeTaskTitle: (taskId: string, newTitle: string, todolistId: string) => void
     removeTask: (taskId: string, todolistId: string) => void
     removeTodolist: (id: string) => void
     changeTodolistTitle: (id: string, newTitle: string) => void
     filter: FilterValuesType
+
 }
 
 export const Todolist = React.memo(function (props: PropsType) {
     console.log('Todolist called')
-    const dispatch= useDispatch()
+    console.log(props.tasks)
+    const dispatch = useAppDispatch()
 
-useEffect(()=>{
-    dispatch(setTasksTC(props.id))
-},[])
+    useEffect(()=>{
+        dispatch(getTasksTC(props.id))
+    }, [])
 
     const addTask = useCallback((title: string) => {
         props.addTask(title, props.id)
@@ -59,6 +59,7 @@ useEffect(()=>{
         tasksForTodolist = props.tasks.filter(t => t.status === TaskStatuses.Completed)
     }
 
+
     return <div>
         <h3><EditableSpan value={props.title} onChange={changeTodolistTitle}/>
             <IconButton onClick={removeTodolist}>
@@ -69,10 +70,10 @@ useEffect(()=>{
         <div>
             {
                 tasksForTodolist.map(t => <Task key={t.id} task={t} todolistId={props.id}
-                                                removeTask={props.removeTask}
-                                                changeTaskTitle={props.changeTaskTitle}
-                                                changeTaskStatus={props.changeTaskStatus}
-                />)
+                                          removeTask={props.removeTask}
+                                          changeTaskTitle={props.changeTaskTitle}
+                                          changeTaskStatus={props.changeTaskStatus}
+                    />)
             }
         </div>
         <div style={{paddingTop: '10px'}}>
