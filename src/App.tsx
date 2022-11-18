@@ -20,17 +20,11 @@ import {
     setTodolistsTC,
     TodolistDomainType
 } from './state/todolists-reducer'
-import {
-    addTaskAC,
-    addTaskTC,
-    changeTaskStatusAC,
-    changeTaskTitleAC,
-    removeTaskAC,
-    removeTaskTC, UpdateTaskTC
-} from './state/tasks-reducer';
+import {addTaskTC, removeTaskTC, UpdateTaskTC} from './state/tasks-reducer';
 import {useSelector} from 'react-redux';
 import {AppRootStateType, useAppDispatch} from './state/store';
 import {TaskStatuses, TaskType} from './api/todolists-api'
+import { LinearProgress } from '@mui/material';
 
 
 export type TasksStateType = {
@@ -92,6 +86,7 @@ function App() {
         <div className="App">
             <AppBar position="static">
                 <Toolbar>
+
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
                     </IconButton>
@@ -100,7 +95,9 @@ function App() {
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
+                <LinearProgress/>
             </AppBar>
+            <LinearProgress/>
             <Container fixed>
                 <Grid container style={{padding: '20px'}}>
                     <AddItemForm addItem={addTodolist}/>
@@ -126,6 +123,7 @@ function App() {
                                         changeTodolistTitle={changeTodolistTitle}
                                     />
                                 </Paper>
+                                <LinearProgress/>
                             </Grid>
                         })
                     }
