@@ -2,6 +2,9 @@ import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import { AddBox } from '@mui/icons-material';
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../app/store";
+import {RequestStatusType} from "../../app/app-reducer";
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -9,6 +12,7 @@ type AddItemFormPropsType = {
 
 export const AddItemForm = React.memo(function (props: AddItemFormPropsType) {
     console.log('AddItemForm called')
+    const entityStatus = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
 
     let [title, setTitle] = useState('')
     let [error, setError] = useState<string | null>(null)
@@ -43,8 +47,9 @@ export const AddItemForm = React.memo(function (props: AddItemFormPropsType) {
                    onKeyPress={onKeyPressHandler}
                    label="Title"
                    helperText={error}
+                   disabled = {entityStatus === "loading"}
         />
-        <IconButton color="primary" onClick={addItem}>
+        <IconButton disabled = {entityStatus === "loading"} color="primary" onClick={addItem}>
             <AddBox/>
         </IconButton>
     </div>

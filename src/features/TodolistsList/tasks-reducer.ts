@@ -65,9 +65,11 @@ export const removeTaskTC = (taskId: string, todolistId: string) => (dispatch: D
     dispatch(setAppStatusAC("loading"))
     todolistsAPI.deleteTask(todolistId, taskId)
         .then(res => {
-            const action = removeTaskAC(taskId, todolistId)
-            dispatch(action)
+            dispatch(removeTaskAC(taskId, todolistId))
             dispatch(setAppStatusAC("succeeded"))
+        })
+        .catch((err:AxiosError)=>{
+            HandleServerNetworkError()
         })
 }
 export const addTaskTC = (title: string, todolistId: string) => (dispatch: Dispatch<ActionsType>) => {
@@ -79,14 +81,6 @@ export const addTaskTC = (title: string, todolistId: string) => (dispatch: Dispa
                 dispatch(setAppStatusAC("succeeded"))
             } else {
                 HandleServerAppError<{ item: TaskType }>(dispatch, res.data)
-             /*   if (res.data.messages[0]) {
-                    dispatch(setAppErrorAC(res.data.messages[0]))
-                    dispatch(setAppStatusAC("failed"))
-
-                } else {
-                    dispatch(setAppErrorAC("some Error"))
-                }
-                dispatch(setAppStatusAC("failed"))*/
             }
         }).catch((e: AxiosError)=>{
         HandleServerNetworkError()
@@ -122,8 +116,7 @@ export const updateTaskTC = (taskId: string, domainModel: UpdateDomainTaskModelT
                 dispatch(setAppStatusAC("succeeded"))
             })
             .catch((e:AxiosError)=>{
-                dispatch(setAppStatusAC("failed"))
-                dispatch(setAppErrorAC(e.message))
+                HandleServerNetworkError()
             })
     }
 
@@ -139,7 +132,7 @@ export type UpdateDomainTaskModelType = {
 export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
-type ActionsType =
+ export type ActionsType =
     | ReturnType<typeof removeTaskAC>
     | ReturnType<typeof addTaskAC>
     | ReturnType<typeof updateTaskAC>

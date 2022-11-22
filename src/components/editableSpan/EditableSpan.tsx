@@ -1,13 +1,18 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import TextField from '@mui/material/TextField';
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../app/store";
+import {RequestStatusType} from "../../app/app-reducer";
 
 
 type EditableSpanPropsType = {
     value: string
     onChange: (newValue: string) => void
+
 }
 
 export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
+    const entityStatus = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
     console.log('EditableSpan called');
     let [editMode, setEditMode] = useState(false);
     let [title, setTitle] = useState(props.value);
@@ -25,6 +30,6 @@ export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
     }
 
     return editMode
-        ? <TextField value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode}/>
+        ? <TextField disabled={entityStatus === "loading"} value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode}/>
         : <span onDoubleClick={activateEditMode}>{props.value}</span>
 });
