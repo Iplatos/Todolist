@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import './App.css'
 import {TodolistsList} from '../features/TodolistsList/TodolistsList'
-import {AppRootStateType, useAppDispatch, useAppSelector} from './store'
-import {InitializedAppTC, RequestStatusType} from './app-reducer'
+import {useAppDispatch, useAppSelector} from './store'
+import {RequestStatusType} from './app-reducer'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -11,28 +11,26 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
 import {Menu} from '@mui/icons-material';
+import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
+import {Login} from "../features/login/Login";
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Login} from "../features/Login/Login";
-import {useDispatch, useSelector} from "react-redux";
-import {CircularProgress} from "@mui/material";
-import {LogOutTC} from "../features/Login/login-reducer";
-import {ErrorSnackbar} from "../components/ErrorSnackBar/ErrorSnackBar";
+import {logoutTC, meTC} from "../features/login/authReducer";
 
 
 function App() {
-    const dispatch = useAppDispatch()
     const status = useAppSelector<RequestStatusType>((state) => state.app.status)
-    const initialized = useSelector<AppRootStateType, boolean>((state) => state.app.initialized)
-    const isLoggedIn = useSelector<AppRootStateType, boolean>((state) => state.login.isLoggedIn)
+    const initialized = useAppSelector<boolean>((state) => state.app.initialized)
+    const isLoggedin = useAppSelector<boolean>((state) => state.login.isLoggedIn)
+const dispatch = useAppDispatch()
 
-    useEffect(()=>{dispatch(InitializedAppTC(initialized))},[])
+    useEffect(()=>{
+         dispatch(meTC())
+    },[])
 
-    if (!initialized){
-        return <div className={"forUnloginLoader"}><CircularProgress/></div>
+    const buttonClichHandler = () => {
+        dispatch(logoutTC())
     }
-const onButtonClickHandler = ()=>{
-dispatch(LogOutTC())
-}
+
     return (
         <div className="App">
             <ErrorSnackbar/>
@@ -44,16 +42,16 @@ dispatch(LogOutTC())
                     <Typography variant="h6">
                         News
                     </Typography>
-                    {isLoggedIn && <Button onClick={onButtonClickHandler} color="inherit">Log out</Button>}
+                    {isLoggedin && <Button onClick={buttonClichHandler} color="inherit">Login</Button>}
                 </Toolbar>
                 {status === 'loading' && <LinearProgress/>}
             </AppBar>
             <Container fixed>
                 <Routes>
-                   <Route path = "/" element={<TodolistsList/>} />
-                   <Route path = "/login" element={<Login/>} />
-                   <Route path = "/404" element={<h1>NOT FOUND</h1>} />
-                   <Route path = "*" element={<Navigate to="/404/"/>} />
+                    <Route path="/" element={<TodolistsList/>}/>
+                    <Route path = "/login" element={<Login/>}/>
+                    <Route path = "*" element={<Navigate to={"/404/"}/>}/>
+                    <Route path = "/404/" element={<h1 style={{textAlign:"center"}}>PAGE NOT FOUND</h1>}/>
                 </Routes>
             </Container>
         </div>

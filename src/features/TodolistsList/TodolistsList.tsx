@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react'
-import {AppRootStateType, useAppDispatch, useAppSelector} from '../../app/store'
+import {useAppDispatch, useAppSelector} from '../../app/store'
 import {
     addTodolistTC,
     changeTodolistFilterAC,
@@ -15,18 +15,19 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import {AddItemForm} from '../../components/AddItemForm/AddItemForm'
 import {Todolist} from './Todolist/Todolist'
-import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 
 
 export const TodolistsList: React.FC = () => {
     const todolists = useAppSelector<Array<TodolistDomainType>>(state => state.todolists)
     const tasks = useAppSelector<TasksStateType>(state => state.tasks)
-    const isLogged = useSelector<AppRootStateType, boolean>(state=>state.login.isLoggedIn)
     const dispatch = useAppDispatch()
+    const isLogged = useAppSelector<boolean>(state=>state.login.isLoggedIn)
 
-
-
+    console.log("isLogged____" + isLogged)
+    if (!isLogged){
+        return <Navigate to = {"/login"}/>
+    }
     useEffect(() => {
         if (!isLogged){
             return
