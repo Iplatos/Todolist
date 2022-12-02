@@ -15,26 +15,24 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import {AddItemForm} from '../../components/AddItemForm/AddItemForm'
 import {Todolist} from './Todolist/Todolist'
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 
 
 export const TodolistsList: React.FC = () => {
     const todolists = useAppSelector<Array<TodolistDomainType>>(state => state.todolists)
     const tasks = useAppSelector<TasksStateType>(state => state.tasks)
+    const isLogged = useAppSelector<boolean>(state => state.auth.isLogged)
     const dispatch = useAppDispatch()
-    const isLogged = useAppSelector<boolean>(state=>state.login.isLoggedIn)
-
-    console.log("isLogged____" + isLogged)
-    if (!isLogged){
-        return <Navigate to = {"/login"}/>
-    }
+    const navigate = useNavigate()
     useEffect(() => {
-        if (!isLogged){
-            return
+        if (isLogged) {
+            const thunk = fetchTodolistsTC()
+            dispatch(thunk)
+        }else {
+            navigate("/login")
         }
-        const thunk = fetchTodolistsTC()
-        dispatch(thunk)
-    }, [])
+
+    }, [isLogged])
 
     const removeTask = useCallback(function (id: string, todolistId: string) {
         const thunk = removeTaskTC(id, todolistId)
@@ -76,6 +74,9 @@ export const TodolistsList: React.FC = () => {
         dispatch(thunk)
     }, [dispatch])
 
+ /*   if (!isLogged) {
+    return <Navigate to={"/login"}/>
+    }*/
 
     return <>
         <Grid container style={{padding: '20px'}}>
