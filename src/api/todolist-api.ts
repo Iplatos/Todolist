@@ -36,7 +36,7 @@ export const todolistApi = {
         return instance.post<AxiosResponse<ResponseType<{item:TaskType }>>>(`/todo-lists/${todolistId}/tasks`, {title})
     }
 }
-type TodolistType = {
+export type TodolistType = {
         id: string,
         title: string,
         addedDate: string,
@@ -54,12 +54,25 @@ type ResponseType<T> = {
     messages: string[],
     data: T
 }
+export enum TaskStatuses {
+    New,
+    InProgress,
+    Completed,
+
+}
+export enum TaskPriorities {
+    Low,
+    Middle,
+    Hi,
+    Urgently,
+    Later
+}
 export type TaskType ={
     description: string
     title: string
     completed: boolean
-    status: number
-    priority: number
+    status: TaskStatuses
+    priority: TaskPriorities
     startDate: string
     deadline: string
     id: string
