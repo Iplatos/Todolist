@@ -33,7 +33,7 @@ export const todolistApi = {
         return instance.delete<ResponseType<{}>>(`/todo-lists/${todolistId}/tasks/${taskId}`)
     },
     postTask(todolistId:string, title:string){
-        return instance.post<AxiosResponse<ResponseType<{item:TaskType }>>>(`/todo-lists/${todolistId}/tasks`, {title})
+        return instance.post<ResponseType<{item:TaskType}>>(`/todo-lists/${todolistId}/tasks`, {title})
     }
 }
 export type TodolistType = {
@@ -81,11 +81,11 @@ export type TaskType ={
     addedDate: string
 }
 export type UpdateTaskModelType = {
-    title?: string
-    description?: null
-    completed?: boolean
-    status?: number
-    priority?: number
-    startDate?: null
-    deadline?: null
+    title: string
+    description: null | string
+    completed: boolean
+    status: number
+    priority: number
+    startDate: null | string
+    deadline: null | string
 }
