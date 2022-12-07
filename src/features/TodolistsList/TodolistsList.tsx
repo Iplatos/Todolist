@@ -44,7 +44,7 @@ export const TodolistList = (props:TodolistListPropType) => {
     }, []);
 
     const changeTaskTitle = useCallback(function (id: string, newTitle: string, todolistId: string) {
-      debugger
+
         const action = ChangeTaskStatusTitleTC(todolistId, id, {title: newTitle});
         dispatch(action);
     }, []);
@@ -75,29 +75,7 @@ export const TodolistList = (props:TodolistListPropType) => {
             <AddItemForm addItem={addTodolist}/>
         </Grid>
         <Grid container spacing={3}>
-            {
-                todolists.map(tl => {
-                    let allTodolistTasks = tasks[tl.id];
 
-                    return <Grid item key={tl.id}>
-                        <Paper style={{padding: '10px'}}>
-                            <Todolist
-                                id={tl.id}
-                                title={tl.title}
-                                tasks={allTodolistTasks}
-                                removeTask={removeTask}
-                                changeFilter={changeFilter}
-                                addTask={addTask}
-                                changeTaskStatus={changeStatus}
-                                filter={tl.filter}
-                                removeTodolist={removeTodolist}
-                                changeTaskTitle={changeTaskTitle}
-                                changeTodolistTitle={changeTodolistTitle}
-                            />
-                        </Paper>
-                    </Grid>
-                })
-            }
         </Grid>
         {
             props.todolists.map(tl => {

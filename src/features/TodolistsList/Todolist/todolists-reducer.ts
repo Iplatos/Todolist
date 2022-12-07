@@ -4,6 +4,7 @@ import {todolistApi, TodolistType} from "../../../api/todolist-api";
 import {Dispatch} from "redux";
 import {AppActionsType, AppRootStateType, AppThunk} from "../../../App/store";
 import {ThunkAction} from "redux-thunk";
+import {AppReducer, setAppStatusAC} from "../../../App/appReducer";
 
 export type RemoveTodolistActionType = {
     type: 'REMOVE-TODOLIST',
@@ -63,8 +64,10 @@ export const fetchTodolistsAC = (todolists:TodolistType[])=>{
 //         .then(res=>dispatch(fetchTodolistsAC(res.data)))
 // }
 export const fetchTodolistsTC = ():AppThunk => async (dispatch)=>{
+    dispatch(setAppStatusAC("loading"))
     const res = await todolistApi.getTodolist()
     dispatch(fetchTodolistsAC(res.data))
+    dispatch(setAppStatusAC("succeeded"))
 }
 
 export type fetchTodolistsACType = ReturnType<typeof fetchTodolistsAC>
@@ -73,24 +76,29 @@ export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType =
 }
 
 export const removeTodolistTC = (id:string):AppThunk => (dispatch)=>{
+    dispatch(setAppStatusAC("loading"))
     todolistApi.deleteTodolist(id)
         .then(res=>dispatch(removeTodolistAC(id)))
+    dispatch(setAppStatusAC("succeeded"))
 }
 export const addTodolistAC = (todolist:TodolistType) => {
     return {type: 'ADD-TODOLIST',todolist} as const
 }
 export const addTodolistTC = (title:string): AppThunk => (dispatch)=>{
+    dispatch(setAppStatusAC("loading"))
     todolistApi.postTodolist(title)
         .then(res=>dispatch(fetchTodolistsTC()))
+    dispatch(setAppStatusAC("succeeded"))
 }
 
 export const changeTodolistTitleAC = (id: string, title: string): ChangeTodolistTitleActionType => {
     return {type: 'CHANGE-TODOLIST-TITLE', id: id, title: title}
 }
 export const changeTodolistTitleTC = (todolistId:string, title:string):AppThunk => (dispatch)=>{
+    dispatch(setAppStatusAC("loading"))
     todolistApi.putTodolist(todolistId, title)
         .then(res=>dispatch(changeTodolistTitleAC(todolistId,title)))
-
+    dispatch(setAppStatusAC("succeeded"))
 
 }
 export const changeTodolistFilterAC = (id: string, filter: FilterValuesType): ChangeTodolistFilterActionType => {
