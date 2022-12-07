@@ -1,8 +1,8 @@
 import { v1 } from 'uuid';
-import { FilterValuesType } from '../App';
-import {todolistApi, TodolistType} from "../api/todolist-api";
+import { FilterValuesType } from '../../../App/App';
+import {todolistApi, TodolistType} from "../../../api/todolist-api";
 import {Dispatch} from "redux";
-import {AppActionsType, AppRootStateType, AppThunk} from "./store";
+import {AppActionsType, AppRootStateType, AppThunk} from "../../../App/store";
 import {ThunkAction} from "redux-thunk";
 
 export type RemoveTodolistActionType = {
@@ -44,20 +44,11 @@ export const todolistsReducer = (state: Array<TodolistDomainType> = initialState
             return [{...action.todolist, filter:"all"}, ...state]
         }
         case 'CHANGE-TODOLIST-TITLE': {
-            const todolist = state.find(tl => tl.id === action.id);
-            if (todolist) {
-                // если нашёлся - изменим ему заголовок
-                todolist.title = action.title;
-            }
-            return [...state]
+            return state.map(tl=> tl.id===action.id ? {...tl, title:action.title} : tl)
         }
         case 'CHANGE-TODOLIST-FILTER': {
-            const todolist = state.find(tl => tl.id === action.id);
-            if (todolist) {
-                // если нашёлся - изменим ему заголовок
-                todolist.filter = action.filter;
-            }
-            return [...state]
+
+            return state.map(tl=> tl.id===action.id ? {...tl, filter:action.filter} : tl)
         }
         default:
             return state;

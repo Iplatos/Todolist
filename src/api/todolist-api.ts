@@ -68,13 +68,13 @@ export enum TaskPriorities {
     Later
 }
 export type TaskType ={
-    description: string
+    description: string | null
     title: string
     completed: boolean
     status: TaskStatuses
     priority: TaskPriorities
-    startDate: string
-    deadline: string
+    startDate: string | null
+    deadline: string | null
     id: string
     todoListId: string
     order: number
@@ -82,10 +82,10 @@ export type TaskType ={
 }
 export type UpdateTaskModelType = {
     title: string
-    description: null | string
+    description:  string | null
     completed: boolean
-    status: number
-    priority: number
-    startDate: null | string
-    deadline: null | string
+    status: TaskStatuses
+    priority: TaskPriorities
+    startDate: string | null
+    deadline:  string | null
 }
