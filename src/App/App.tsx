@@ -15,6 +15,8 @@ import {LinearProgress} from "@mui/material";
 import {TodolistList} from "../features/TodolistsList/TodolistsList";
 import CustomizedSnackbars from "../Components/SnackBar/SnackBar";
 import {RequestStatusType} from "./appReducer";
+import {Login} from "../features/TodolistsList/Login/Login";
+import {Navigate, Route, Routes} from "react-router-dom";
 
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
@@ -24,7 +26,7 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
-/// STEP_#15 2021-08-05  1h50m
+/// 37 min 16 app for stud by Dimich
 function App() {
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
 const appStatus = useSelector<AppRootStateType, RequestStatusType>(state=>state.app.status)
@@ -45,10 +47,25 @@ const appStatus = useSelector<AppRootStateType, RequestStatusType>(state=>state.
             </AppBar>
             {appStatus === "loading" &&  <LinearProgress/>}
             <Container fixed>
-            <TodolistList todolists={todolists}/>
+                <Routes>
+                  <Route path={"/"} element={ <TodolistList todolists={todolists}/>}/>
+                  <Route path ={'login'} element={<Login/>} />
+                  <Route path ={"*"} element={<Navigate to={"/404"}/>} />
+                  <Route path ={'/404'} element={<h1>PAGE NOT FOUND</h1>} />
+
+                </Routes>
                 <CustomizedSnackbars/>
             </Container>
         </div>
     );
 }
 export default App;
+// куки текстовый формат данных.
+// Исполюзуюся для логинивания.
+// в котором есть имя значеиня и другие.
+// экспаер - уничтожение куки.
+// размер у куки ограничен.
+// поэтому куки маленькие.
+// хранятся в браузере
+// входим кука создается. выходим куки отвечающие за вход удаляются.
+// Между браезерами и доменами не шарится

@@ -17,17 +17,17 @@ import {Todolist} from "./Todolist/Todolist";
 import {FilterValuesType, TasksStateType} from "../../App/App";
 
 type TodolistListPropType = {
-    todolists:TodolistDomainType[]
+    todolists: TodolistDomainType[]
 }
-export const TodolistList = (props:TodolistListPropType) => {
+export const TodolistList = (props: TodolistListPropType) => {
 
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
     const dispatch = useDispatch();
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(fetchTodolistsTC())
-    },[])
+    }, [])
 
     const removeTask = useCallback(function (id: string, todolistId: string) {
         dispatch(removeTaskTC(id, todolistId));
@@ -38,7 +38,7 @@ export const TodolistList = (props:TodolistListPropType) => {
         dispatch(action);
     }, []);
 
-    const changeStatus = useCallback(function (id: string, status:TaskStatuses , todolistId: string) {
+    const changeStatus = useCallback(function (id: string, status: TaskStatuses, todolistId: string) {
         const action = ChangeTaskStatusTitleTC(todolistId, id, {status});
         dispatch(action);
     }, []);
@@ -95,7 +95,7 @@ export const TodolistList = (props:TodolistListPropType) => {
                             removeTodolist={removeTodolist}
                             changeTaskTitle={changeTaskTitle}
                             changeTodolistTitle={changeTodolistTitle}
-                            entityStatus = {tl.entityStatus}
+                            entityStatus={tl.entityStatus}
                         />
                     </Paper>
                 </Grid>

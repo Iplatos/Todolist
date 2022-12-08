@@ -31,9 +31,9 @@ type PropsType = {
 export const Todolist = React.memo(function (props: PropsType) {
     console.log('Todolist called')
     const dispatch = useDispatch()
-        useEffect(()=>{
-dispatch(getTasksThunk(props.id))
-    },[])
+    useEffect(() => {
+        dispatch(getTasksThunk(props.id))
+    }, [])
 
     const addTask = useCallback((title: string) => {
         props.addTask(title, props.id)
@@ -54,15 +54,15 @@ dispatch(getTasksThunk(props.id))
     let tasksForTodolist = props.tasks
 
     if (props.filter === 'active') {
-        tasksForTodolist = props.tasks.filter(t => t.status===TaskStatuses.New)
+        tasksForTodolist = props.tasks.filter(t => t.status === TaskStatuses.New)
     }
     if (props.filter === 'completed') {
-        tasksForTodolist = props.tasks.filter(t => t.status===TaskStatuses.Completed)
+        tasksForTodolist = props.tasks.filter(t => t.status === TaskStatuses.Completed)
     }
 
     return <div>
-        <h3><EditableSpan  value={props.title} onChange={changeTodolistTitle}/>
-            <IconButton disabled={props.entityStatus ==="loading"} onClick={removeTodolist}>
+        <h3><EditableSpan value={props.title} onChange={changeTodolistTitle}/>
+            <IconButton disabled={props.entityStatus === "loading"} onClick={removeTodolist}>
                 <Delete/>
             </IconButton>
         </h3>
