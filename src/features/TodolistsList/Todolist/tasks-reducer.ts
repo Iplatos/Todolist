@@ -4,7 +4,9 @@ import {TasksStateType} from '../../../App/App';
 import {TaskPriorities, TaskStatuses, TaskType, todolistApi, UpdateTaskModelType} from "../../../api/todolist-api";
 import {Dispatch} from "redux";
 import {AppActionsType, AppRootStateType, AppThunk} from "../../../App/store";
-import {setAppStatusAC} from "../../../App/appReducer";
+import {setAppErrorAC, setAppStatusAC} from "../../../App/appReducer";
+import {AxiosError, AxiosResponse} from "axios";
+import {handleServerNetworkError, handleSeverAppError} from "../../../utils/error-utils";
 
 export type RemoveTaskActionType = {
     type: 'REMOVE-TASK',
@@ -82,23 +84,42 @@ export const getTasksThunk = (todolistId: string):AppThunk => (dispatch) => {
 export const removeTaskAC = (taskId: string, todolistId: string): RemoveTaskActionType => {
     return {type: 'REMOVE-TASK', taskId: taskId, todolistId: todolistId}
 }
-export const removeTaskTC = (taskId: string, todolistId: string) => (dispatch:Dispatch<AppActionsType>) => {
+export const removeTaskTC = (taskId: string, todolistId: string) => async (dispatch:Dispatch<AppActionsType>) => {
+    try {
+        dispatch(setAppStatusAC("loading"))
+        let res = await todolistApi.deleteTask(todolistId, taskId)
+       dispatch(removeTaskAC(taskId, todolistId))
+        dispatch(setAppStatusAC("succeeded"))
+    }
+    catch (error:any) {
+        handleServerNetworkError(dispatch, error.message)
+    }
 
-    dispatch(setAppStatusAC("loading"))
-    todolistApi.deleteTask(todolistId, taskId)
-        .then(res => dispatch(removeTaskAC(taskId, todolistId)))
-    dispatch(setAppStatusAC("succeeded"))
+
+
 }
 export const addTaskAC = (task:TaskType): AddTaskActionType => {
     return {type: 'ADD-TASK', task}
 }
-export const AddTaskTC =(todolistId:string, title:string):AppThunk=>(dispatch)=>{
-    dispatch(setAppStatusAC("loading"))
-    todolistApi.postTask(todolistId,title)
-        .then(res=> {
-            dispatch(addTaskAC(res.data.data.item))
-            dispatch(setAppStatusAC("succeeded"))
-        })
+export const AddTaskTC =(todolistId:string, title:string):AppThunk=>async (dispatch)=> {
+   try {
+       dispatch(setAppStatusAC("loading"))
+     let res = await todolistApi.postTask(todolistId, title)
+               if (res.data.resultCode === 0) {
+                   dispatch(addTaskAC(res.data.data.item))
+               } else {
+                   handleSeverAppError<{item:TaskType}>(dispatch,res.data)
+               }
+
+   } catch(error:any) {
+           handleServerNetworkError(dispatch, error.message)
+
+   } finally {
+       dispatch(setAppStatusAC("succeeded"))
+   }
+
+
+
 }
 export const ChangeTaskStatusTitleAC = (todolistId: string, taskId: string, model: UpdateDomainTaskModelType) => {
     return {type: "CHANGE-TASK-TITLE-STATUS", todolistId, taskId, model} as const

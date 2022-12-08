@@ -31,7 +31,7 @@ const error = useSelector<AppRootStateType, string | null>(state => state.app.er
     return (
         <Stack spacing={2} sx={{ width: '100%' }}>
             <Snackbar open={error !== null} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
                     {error}
                 </Alert>
             </Snackbar>

@@ -9,6 +9,7 @@ import {FilterValuesType} from '../../../App/App';
 import {TaskStatuses, TaskType} from "../../../api/todolist-api";
 import {useDispatch} from "react-redux";
 import {getTasksThunk} from "./tasks-reducer";
+import {RequestStatusType} from "../../../App/appReducer";
 
 
 type PropsType = {
@@ -23,6 +24,7 @@ type PropsType = {
     removeTodolist: (id: string) => void
     changeTodolistTitle: (id: string, newTitle: string) => void
     filter: FilterValuesType
+    entityStatus: RequestStatusType
 
 }
 
@@ -59,12 +61,12 @@ dispatch(getTasksThunk(props.id))
     }
 
     return <div>
-        <h3><EditableSpan value={props.title} onChange={changeTodolistTitle}/>
-            <IconButton onClick={removeTodolist}>
+        <h3><EditableSpan  value={props.title} onChange={changeTodolistTitle}/>
+            <IconButton disabled={props.entityStatus ==="loading"} onClick={removeTodolist}>
                 <Delete/>
             </IconButton>
         </h3>
-        <AddItemForm addItem={addTask}/>
+        <AddItemForm entityStatus={props.entityStatus} addItem={addTask}/>
         <div>
             {
                 tasksForTodolist.map(t => <Task key={t.id} task={t} todolistId={props.id}
