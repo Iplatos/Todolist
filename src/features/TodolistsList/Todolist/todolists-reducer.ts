@@ -72,11 +72,17 @@ export const fetchTodolistsAC = (todolists: TodolistType[]) => {
 //     todolistApi.getTodolist()
 //         .then(res=>dispatch(fetchTodolistsAC(res.data)))
 // }
-export const fetchTodolistsTC = (): AppThunk => async (dispatch) => {
+export const fetchTodolistsTC = (): AppThunk =>  (dispatch) => {
     dispatch(setAppStatusAC("loading"))
-    const res = await todolistApi.getTodolist()
-    dispatch(fetchTodolistsAC(res.data))
-    dispatch(setAppStatusAC("succeeded"))
+    todolistApi.getTodolist()
+        .then(res=> {
+            dispatch(fetchTodolistsAC(res.data))
+            dispatch(setAppStatusAC("succeeded"))
+
+        } ).catch((error)=>{
+      handleServerNetworkError(dispatch, error.message)
+  })
+
 }
 
 export type fetchTodolistsACType = ReturnType<typeof fetchTodolistsAC>

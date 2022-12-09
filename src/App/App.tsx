@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback, useEffect} from 'react'
 import './App.css';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,13 +8,13 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import {Menu} from '@mui/icons-material';
 import {TodolistDomainType} from '../features/TodolistsList/Todolist/todolists-reducer';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './store';
 import {TaskType} from "../api/todolist-api";
-import {LinearProgress} from "@mui/material";
+import {CircularProgress, LinearProgress} from "@mui/material";
 import {TodolistList} from "../features/TodolistsList/TodolistsList";
 import CustomizedSnackbars from "../Components/SnackBar/SnackBar";
-import {RequestStatusType} from "./appReducer";
+import {isInitializedTC, logOutTC, RequestStatusType} from "./appReducer";
 import {Login} from "../features/TodolistsList/Login/Login";
 import {Navigate, Route, Routes} from "react-router-dom";
 
@@ -26,12 +26,27 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
-/// 37 min 16 app for stud by Dimich
+
 function App() {
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
-const appStatus = useSelector<AppRootStateType, RequestStatusType>(state=>state.app.status)
+    const appStatus = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
+    const isInitialized = useSelector<AppRootStateType, boolean>(state => state.app.initialized)
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLogedIn)
+    const dispatch = useDispatch()
 
-    console.log(appStatus)
+    useEffect(() => {
+        dispatch(isInitializedTC())
+    }, [])
+    const LogOutHandler = useCallback(() =>{
+        dispatch(logOutTC())
+    },[])
+
+    if (!isInitialized) {
+        return <CircularProgress style={{position: "fixed", textAlign: "center"}} size={100}/>
+    }
+
+
+
     return (
         <div className="App">
             <AppBar position="static">
@@ -42,16 +57,16 @@ const appStatus = useSelector<AppRootStateType, RequestStatusType>(state=>state.
                     <Typography variant="h6">
                         News
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    {isLoggedIn && <Button color="inherit" onClick={LogOutHandler}>Log out</Button>}
                 </Toolbar>
             </AppBar>
-            {appStatus === "loading" &&  <LinearProgress/>}
+            {appStatus === "loading" && <LinearProgress/>}
             <Container fixed>
                 <Routes>
-                  <Route path={"/"} element={ <TodolistList todolists={todolists}/>}/>
-                  <Route path ={'login'} element={<Login/>} />
-                  <Route path ={"*"} element={<Navigate to={"/404"}/>} />
-                  <Route path ={'/404'} element={<h1>PAGE NOT FOUND</h1>} />
+                    <Route path={"/"} element={<TodolistList todolists={todolists}/>}/>
+                    <Route path={'login'} element={<Login/>}/>
+                    <Route path={"*"} element={<Navigate to={"/404"}/>}/>
+                    <Route path={'/404'} element={<h1>PAGE NOT FOUND</h1>}/>
 
                 </Routes>
                 <CustomizedSnackbars/>
@@ -59,6 +74,7 @@ const appStatus = useSelector<AppRootStateType, RequestStatusType>(state=>state.
         </div>
     );
 }
+
 export default App;
 // куки текстовый формат данных.
 // Исполюзуюся для логинивания.
