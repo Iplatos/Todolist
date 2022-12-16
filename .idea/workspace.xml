@@ -68,7 +68,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/it-kamasutra/toDo",
+    "last_opened_file_path": "E:/it-kamasutra/todo16v3/src/features/TodolistsList/todolists-reducer.ts",
     "nodejs_package_manager_path": "yarn",
     "ts.external.directory.path": "E:\\it-kamasutra\\toDo\\Todolist\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
@@ -102,7 +102,7 @@
       <workItem from="1670934406626" duration="589000" />
       <workItem from="1670935184484" duration="762000" />
       <workItem from="1671006905093" duration="463000" />
-      <workItem from="1671187210962" duration="5535000" />
+      <workItem from="1671187210962" duration="9520000" />
     </task>
     <servers />
   </component>
