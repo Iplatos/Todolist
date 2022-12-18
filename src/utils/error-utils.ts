@@ -1,17 +1,18 @@
-import {setAppErrorAC, SetAppErrorActionType, setAppStatusAC, SetAppStatusActionType} from '../app/app-reducer'
-import {ResponseType} from '../api/todolists-api'
-import {Dispatch} from 'redux'
+import { setAppErrorAC, setAppStatusAC} from "../App/appReducer";
+import {Dispatch} from "redux";
+import {ResponseType} from "../api/todolist-api";
 
-export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatch<SetAppErrorActionType | SetAppStatusActionType>) => {
+export const handleServerNetworkError = (dispatch:Dispatch, message:string) => {
+    dispatch(setAppErrorAC({error:message}))
+    dispatch(setAppStatusAC({status:"succeeded"}))
+}
+export const handleSeverAppError = <T>(dispatch:Dispatch, data:ResponseType<T>) => {
     if (data.messages.length) {
-        dispatch(setAppErrorAC(data.messages[0]))
+        dispatch(setAppErrorAC({error:data.messages[0]}))
     } else {
-        dispatch(setAppErrorAC('Some error occurred'))
+        dispatch(setAppErrorAC({error:"title should be less then 100 "}))
     }
-    dispatch(setAppStatusAC('failed'))
 }
-
-export const handleServerNetworkError = (error: { message: string }, dispatch: Dispatch<SetAppErrorActionType | SetAppStatusActionType>) => {
-    dispatch(setAppErrorAC(error.message ? error.message : 'Some error occurred'))
-    dispatch(setAppStatusAC('failed'))
-}
+/// дженериковая функция. смотрим нам приходит дата реснопстайп.
+// но у тудус и тасок разные свва. нужно указать в свве айтем этот тип.
+// и передать перед вызовом.
