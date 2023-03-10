@@ -50,7 +50,7 @@ export const Login = () => {
         onSubmit: values => {
             dispatch(loginTC(values))
             formik.resetForm()
-            dispatch(setAppStatusAC("failed"))
+            dispatch(setAppStatusAC({status:"failed"}))
         },
     });
 

@@ -1,16 +1,16 @@
-import {AppStatusType, setAppErrorAC, setAppStatusAC} from "../App/appReducer";
+import { setAppErrorAC, setAppStatusAC} from "../App/appReducer";
 import {Dispatch} from "redux";
 import {ResponseType} from "../api/todolist-api";
 
-export const handleServerNetworkError = (dispatch:Dispatch<AppStatusType>, message:string) => {
-    dispatch(setAppErrorAC(message))
-    dispatch(setAppStatusAC("succeeded"))
+export const handleServerNetworkError = (dispatch:Dispatch, message:string) => {
+    dispatch(setAppErrorAC({error:message}))
+    dispatch(setAppStatusAC({status:"succeeded"}))
 }
-export const handleSeverAppError = <T>(dispatch:Dispatch<AppStatusType>, data:ResponseType<T>) => {
+export const handleSeverAppError = <T>(dispatch:Dispatch, data:ResponseType<T>) => {
     if (data.messages.length) {
-        dispatch(setAppErrorAC(data.messages[0]))
+        dispatch(setAppErrorAC({error:data.messages[0]}))
     } else {
-        dispatch(setAppErrorAC("title shoulb be less then 100 "))
+        dispatch(setAppErrorAC({error:"title should be less then 100 "}))
     }
 }
 /// дженериковая функция. смотрим нам приходит дата реснопстайп.

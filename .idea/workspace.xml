@@ -1,30 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="66a1eaa7-2d8b-4eb5-9812-78d7ac2b7b9c" name="Changes" comment="">
+    <list default="true" id="8a269001-64fc-4549-aa46-be073968e715" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/appReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/appReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/todolist-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/todolist-api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/TodolistsList/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/TodolistsList/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/TodolistsList/Login/LoginReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/TodolistsList/Login/LoginReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/TodolistsList/Todolist/todolists-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/TodolistsList/Todolist/todolists-reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/TodolistsList/TodolistsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/TodolistsList/TodolistsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/.env" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/.idea/toDo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/.idea/toDo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/.storybook/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/.storybook/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/.storybook/preview.js" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/.storybook/preview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/public/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/App/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/App/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/App/appReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/App/appReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/App/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/Components/AddItemForm/AddItemForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/Components/AddItemForm/AddItemForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/Components/EditableSpan/EditableSpan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/Components/EditableSpan/EditableSpan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/Components/SnackBar/SnackBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/Components/SnackBar/SnackBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/api/todolist-api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/api/todolist-api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Login/LoginReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Login/LoginReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Todolist/Task.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Todolist/Task.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Todolist/Todolist.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Todolist/Todolist.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Todolist/tasks-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Todolist/tasks-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Todolist/todolists-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/Todolist/todolists-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/TodolistsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/features/TodolistsList/TodolistsList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/react-app-env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/react-app-env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/reportWebVitals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/reportWebVitals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/setupTests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/setupTests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/stories/todolists-api.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/stories/todolists-api.stories.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/src/utils/error-utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/src/utils/error-utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Todolist/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Todolist/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="TypeScript JSX File" />
-        <option value="tsconfig.json" />
-        <option value="TypeScript File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,8 +54,8 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2IOQjbFBUgmUCpVCGEUVhuqg47E" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectId" id="2IrKkRc7ZZO2FubSQnbzgjiEjl4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -46,24 +68,15 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/it-kamasutra/toDo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/it-kamasutra/toDo/Todolist&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\it-kamasutra\\toDo\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\it-kamasutra\\toDo\\Todolist\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\it-kamasutra\toDo\src\features\TodolistsList\Login" />
-      <recent name="E:\it-kamasutra\toDo\src\features\TodolistsList\Todolist" />
-      <recent name="E:\it-kamasutra\toDo\src\App" />
-      <recent name="E:\it-kamasutra\toDo\src\Components\EditableSpan" />
-      <recent name="E:\it-kamasutra\toDo\src\Components\AddItemForm" />
-    </key>
-  </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
+      <package-json value="$PROJECT_DIR$/Todolist/package.json" />
       <command value="run" />
       <scripts>
         <script value="start" />
@@ -72,40 +85,25 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="storybook" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="storybook" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
-        <item itemvalue="npm.storybook" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="66a1eaa7-2d8b-4eb5-9812-78d7ac2b7b9c" name="Changes" comment="" />
-      <created>1670050296329</created>
+      <changelist id="8a269001-64fc-4549-aa46-be073968e715" name="Changes" comment="" />
+      <created>1670934405330</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1670050296329</updated>
-      <workItem from="1670050298216" duration="17865000" />
-      <workItem from="1670136271092" duration="10408000" />
-      <workItem from="1670230100394" duration="7073000" />
-      <workItem from="1670400520204" duration="12302000" />
-      <workItem from="1670414214944" duration="5866000" />
-      <workItem from="1670480541518" duration="11859000" />
-      <workItem from="1670494961736" duration="6541000" />
-      <workItem from="1670575821489" duration="5775000" />
-      <workItem from="1670584980037" duration="2846000" />
+      <updated>1670934405330</updated>
+      <workItem from="1670934406626" duration="589000" />
+      <workItem from="1670935184484" duration="762000" />
+      <workItem from="1671006905093" duration="463000" />
+      <workItem from="1671187210962" duration="16090000" />
+      <workItem from="1671356008290" duration="5538000" />
     </task>
     <servers />
   </component>
@@ -117,7 +115,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

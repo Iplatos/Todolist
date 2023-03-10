@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../App/store";
 import React, {useCallback, useEffect} from "react";
 import {AddTaskTC, ChangeTaskStatusTitleTC, removeTaskTC} from "./Todolist/tasks-reducer";
-import {TaskStatuses} from "../../api/todolist-api";
+import {TaskStatuses, TodolistType} from "../../api/todolist-api";
 import Grid from "@mui/material/Grid";
 import {AddItemForm} from "../../Components/AddItemForm/AddItemForm";
 import Paper from "@mui/material/Paper";
@@ -54,7 +54,7 @@ export const TodolistList = (props: TodolistListPropType) => {
     }, []);
 
     const changeFilter = useCallback(function (value: FilterValuesType, todolistId: string) {
-        const action = changeTodolistFilterAC(todolistId, value);
+        const action = changeTodolistFilterAC({id:todolistId, filter:value});
         dispatch(action);
     }, []);
 

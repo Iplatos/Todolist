@@ -1,41 +1,38 @@
 import {setAppStatusAC} from "../../../App/appReducer";
 import {authApi, LoginParamsType} from "../../../api/todolist-api";
-import {AppThunk} from "../../../App/store";
 import {handleServerNetworkError, handleSeverAppError} from "../../../utils/error-utils";
-import {AxiosError} from "axios";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Dispatch} from "redux";
 
 
 const initialState = {
-    isLogedIn: false as boolean
+    isLogedIn: false
 }
-export type AppLoginType = ReturnType<typeof setIsLoggenInAC>
 
-
-export const LoginReducer = (state: typeof initialState = initialState, action: AppLoginType) => {
-    switch (action.type) {
-        case "IS-LOGGED-IN": {
-            return {...state, isLogedIn: action.value}
+const slice = createSlice({
+    name: "auth",
+    initialState:initialState,
+    reducers:{
+        setIsLoggedInAC(state,action:PayloadAction<{ value: boolean }>){
+            state.isLogedIn=action.payload.value
         }
-        default:
-            return {...state}
 
     }
+})
 
-}
+
+export const loginReducer = slice.reducer;
+export const {setIsLoggedInAC} = slice.actions
 
 
-export const setIsLoggenInAC = (value: boolean) => {
-    return {type: "IS-LOGGED-IN", value} as const
-}
-
-export const loginTC = (data: LoginParamsType): AppThunk =>
-    async (dispatch) => {
-        dispatch(setAppStatusAC("loading"))
+export const loginTC = (data: LoginParamsType) =>
+    async (dispatch:Dispatch) => {
+        dispatch(setAppStatusAC({status:"loading"}))
         const res = await authApi.login(data)
         try {
             if (res.data.resultCode == 0) {
-                dispatch(setIsLoggenInAC(true))
-                dispatch(setAppStatusAC("succeeded"))
+                dispatch(setIsLoggedInAC({value:true}))
+                dispatch(setAppStatusAC({status: "succeeded"}))
             } else {
                 handleSeverAppError(dispatch, res.data)
             }
