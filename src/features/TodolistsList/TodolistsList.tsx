@@ -32,7 +32,7 @@ export const TodolistList = (props: TodolistListPropType) => {
         dispatch(fetchTodolistsTC())
     }, [])
 
-
+///a
     const removeTask = useCallback(function (id: string, todolistId: string) {
         dispatch(removeTaskTC(id, todolistId));
     }, []);
